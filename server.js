@@ -41,35 +41,42 @@ app.get('/', function(req, res) {
 	res.render('index'); 
 });
 
-aapp.get("/scrape", function(req, res) {
+app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  axios.get("http://www.echojs.com/").then(function(response) {
+  axios.get("https://pitchfork.com/reviews/albums/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
+    var result = {};
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
-      // Save an empty result object
-      var result = {};
-
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this)
-        .children("a")
-        .text();
-      result.link = $(this)
-        .children("a")
+    $(".review__link").each(function(i, element) {
+      result.link = $(element)
         .attr("href");
+      result.artist = "artistPlaceholder"
+      result.album = "albumPlaceHolder"
+      result.image = "https://media.pitchfork.com/photos/5b292b9fe007c56236f5442e/1:1/w_320/ganggangdance.jpg"
+      /*       
+      result.artist = $(element)
+        .children("")
+        .text(); 
+      result.album = $(element) 
+      result.image = $(element)
+        .children(".review__artwork")
+        .first()
+        .children("img")
+        .attr("src");
+      */
 
       // Create a new Article using the `result` object built from scraping
-      db.Article.create(result)
+       db.articles.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
         })
         .catch(function(err) {
           // If an error occurred, send it to the client
-          return res.json(err);
-        });
+          console.log(err);
+        }); 
     });
 
     // If we were able to successfully scrape and save an Article, send a message to the client
@@ -80,7 +87,7 @@ aapp.get("/scrape", function(req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // Grab every document in the Articles collection
-  db.Article.find({})
+  db.articles.find({})
     .then(function(dbArticle) {
       // If we were able to successfully find Articles, send them back to the client
       res.json(dbArticle);
@@ -89,10 +96,10 @@ app.get("/articles", function(req, res) {
       // If an error occurred, send it to the client
       res.json(err);
     });
-});
+}); 
 
 // Route for grabbing a specific Article by id, populate it with it's note
-app.get("/articles/:id", function(req, res) {
+/* app.get("/articles/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article.findOne({ _id: req.params.id })
     // ..and populate all of the notes associated with it
@@ -125,7 +132,7 @@ app.post("/articles/:id", function(req, res) {
       // If an error occurred, send it to the client
       res.json(err);
     });
-});
+}); */
 
 // Start the server
 app.listen(PORT, function() {
