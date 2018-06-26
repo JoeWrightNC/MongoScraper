@@ -13,7 +13,7 @@ const Schema = mongoose.Schema;
 });
 
 // This creates our model from the above schema, using mongoose's model method
-const Comments = mongoose.model("Comment", CommentSchema);
+const comments = mongoose.model("comments", CommentSchema);
 
 // Export the Note model
-module.exports = Comments;
+module.exports = comments;
