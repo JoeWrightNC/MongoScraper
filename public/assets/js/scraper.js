@@ -72,8 +72,12 @@ $(document).on("click", ".noteTaker", function() {
         <h4>OR</h4>
         <a href="/" class="mt-auto btn btn-primary">Return To Articles</a>
         <br>
-        ${data.comments ? '<h2 class="noteTitle">Most Recent Comment</h2> <h3>Subject: '+data.comments.title+'</h3><p class=noteSummary>"'+data.comments.body+'"</p>' : '<p class=noteSummary>There are No Comments Yet</p>'}
-    
+        <h2 class="noteTitle">Previous Comments</h2>
+        ${data.comments.map((item, i) => `
+          <h3>Subject: ${item.title}</h3>
+          <p class=commentBody>${item.body}</p>
+          <button data-id="${item._id}" class="mt-auto btn btn-primary" id='deletenote'>Delete Note</button>
+          `.trim()).join('')}
         `
       ) 
 
@@ -103,6 +107,29 @@ $(document).on("click", "#savenote", function() {
       // Value taken from note textarea
       body: $("#bodyinput").val()
     }
+  })
+    // With that done
+    .then(function(data) {
+      // Log the response
+      console.log(data);
+      // Empty the notes section
+      $("#notes").empty();
+    });
+
+  // Also, remove the values entered in the input and textarea for note entry
+  $("#titleinput").val("");
+  $("#bodyinput").val("");
+  $("#articles").show();
+});
+
+$(document).on("click", "#deletenote", function() {
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data-id");
+
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "GET",
+    url: "/delete/" + thisId,
   })
     // With that done
     .then(function(data) {

@@ -135,5 +135,13 @@ body {
   font-size:4em;
   color:white;
   text-shadow: black 1px 1px;
-  box-shadow: 0 1px 10px 0px #636e72;
+  box-shadow: 3px 3px 0px 0px #636e72;
+}
+
+.commentBody {
+  color:#485460;
+  border-radius:1.5vw;
+  margin: .5vh;
+  font-size:1.5em;
+  font-family: 'Montserrat', sans-serif;
 }
