@@ -42,6 +42,7 @@ $(document).on("click", "#scrapeEm", function() {
     location.reload()
   })
 })
+
 // Whenever someone clicks a p tag
 $(document).on("click", ".noteTaker", function() {
 

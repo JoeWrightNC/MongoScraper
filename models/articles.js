@@ -9,7 +9,16 @@ var ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
-    required: true
+    required: true,
+    /* validate: [
+      // Function takes in the new `longstring` value to be saved as an argument
+      function(input) {
+        // If this returns true, proceed. If not, return the error message below
+        checkDups(input)
+      },
+      // Error Message
+      "Longstring should be longer."
+    ] */
   },
   summary: {
     type: String,
@@ -31,6 +40,20 @@ var ArticleSchema = new Schema({
     }
   ]
 });
+
+/* function checkDups(title) {
+  articles.find( { title:title })
+  .then(function(checkerResult){
+    if (checkerResult) {
+      console.log(checkerResult)
+      return false
+    }
+    else {
+      console.log(checkerResult)
+      return true
+    }
+  })
+} */
 
 // This creates our model from the above schema, using mongoose's model method
 const articles = mongoose.model("articles", ArticleSchema);
