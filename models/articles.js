@@ -10,8 +10,8 @@ var ArticleSchema = new Schema({
   title: {
     type: String,
     required: true,
-/*     unique: true
- */    /* validate: [
+    unique: true
+    /* validate: [
       // Function takes in the new `longstring` value to be saved as an argument
       function(input) {
         // If this returns true, proceed. If not, return the error message below
