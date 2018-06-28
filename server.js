@@ -33,6 +33,8 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlin
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
+db.getCollection('articles').remove({})
+
 app.get('/', function(req, res) {
 	res.render('index'); 
 });
