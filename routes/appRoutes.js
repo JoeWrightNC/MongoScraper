@@ -49,9 +49,6 @@ app.get("/scrape", function(req, res) {
   });
 });
 
-function checkForDups() {
-
-}
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
