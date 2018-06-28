@@ -37,7 +37,6 @@ app.get("/scrape", function(req, res) {
         .attr("src");
 
       // Create a new Article using the `result` object built from scraping
-      db.getCollection('articles').remove({})
       db.articles.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
