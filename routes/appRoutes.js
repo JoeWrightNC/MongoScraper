@@ -7,10 +7,6 @@ const cheerio = require("cheerio");
 
 module.exports = function(app) {
 // A GET route for scraping the echoJS website
-app.get('/', function(req, res) {
-	res.render('index'); 
-});
-
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("http://www.newsobserver.com/news/local/").then(function(response) {
