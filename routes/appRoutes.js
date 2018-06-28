@@ -35,7 +35,7 @@ app.get("/scrape", function(req, res) {
       // Create a new Article using the `result` object built from scraping
       db.articles.create(result)
         .then(function(dbArticle) {
-          // View the added result in the console
+          // View the added result in the consolen
           console.log(dbArticle);
         })
         .catch(function(err) {
