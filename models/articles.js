@@ -10,6 +10,7 @@ var ArticleSchema = new Schema({
   title: {
     type: String,
     required: true,
+    unique: true
     /* validate: [
       // Function takes in the new `longstring` value to be saved as an argument
       function(input) {

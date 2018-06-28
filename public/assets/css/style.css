@@ -1,6 +1,7 @@
 body {
   background-color: #0fbcf9;
   font-family: 'Markazi Text', serif;
+  text-align:center;
 }
 #background {
   position:fixed;
@@ -54,6 +55,11 @@ body {
   padding-top:3vh;
   box-shadow: #808e9b, 5px, 5px, 5px, 5px;
   margin-bottom:10vh;
+  z-index: 50;
+}
+
+#articles {
+  z-index:99;
 }
 
 .noteSummary {
@@ -144,4 +150,12 @@ body {
   margin: .5vh;
   font-size:1.5em;
   font-family: 'Montserrat', sans-serif;
+}
+
+@media only screen and (max-width : 768px) { 
+  .d-block {
+    margin-top:25px;
+    margin-right:25px;
+    float: none;
+  }
 }

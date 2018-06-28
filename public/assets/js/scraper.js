@@ -8,18 +8,19 @@ $.getJSON("/articles", function(data) {
       `
       <div class="card">
       <div class="row ">
-        <div class="col-md-8 px-3">
+        <div class="col-xs-12 col-md-8 px-3">
           <div class="card-block px-6">
-            <h4 class="card-title">${data[i].title} </h4>
+            <h4 class="card-title">Album: ${data[i].title} </h4>
+            <span>
             <p class="card-text">
-              ${data[i].summary}
+              Artist: ${data[i].summary}
             </p>
-            <br>
             <a href="${data[i].link}" target="_blank" class="mt-auto btn btn-lg btn-primary">Read More</a>
             <button type="button" class="btn btn-lg btn-primary noteTaker" data-id="${data[i]._id}">Leave A Comment</button>
-          </div>
+            </span>
+            </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-12 col-md-4">
           <div class="carousel-item active">
             <img class="d-block" src="${data[i].image ? data[i].image : '../images/raleighHeader.jpg'}" alt="image not found">
           </div>

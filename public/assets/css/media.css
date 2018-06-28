@@ -1,0 +1,23 @@
+@media only screen and (max-width : 768px) { 
+  .d-block {
+    margin-top:25px;
+    margin-right:25px;
+    float: none;
+  }
+
+  #headerText {
+    color:white;
+    font-weight:bold;
+    text-shadow: black 3px 3px;
+    font-size:4em;
+    padding-top:170px;
+  }
+  
+  #subHeaderText {
+    color:white;
+    font-weight: bold;
+    text-shadow: black 3px 3px;
+    font-size: 2.5em;
+    padding-top:3px;
+  }
+}
