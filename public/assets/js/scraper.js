@@ -10,10 +10,10 @@ $.getJSON("/articles", function(data) {
       <div class="row ">
         <div class="col-xs-12 col-md-8 px-3">
           <div class="card-block px-6">
-            <h4 class="card-title">Album: ${data[i].title} </h4>
+            <h4 class="card-title">${data[i].title} </h4>
             <span>
             <p class="card-text">
-              Artist: ${data[i].summary}
+              ${data[i].summary}
             </p>
             <a href="${data[i].link}" target="_blank" class="mt-auto btn btn-lg btn-primary">Read More</a>
             <button type="button" class="btn btn-lg btn-primary noteTaker" data-id="${data[i]._id}">Leave A Comment</button>
